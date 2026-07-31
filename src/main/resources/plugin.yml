@@ -1,0 +1,31 @@
+name: EtherNyxAuth
+version: '${project.version}'
+main: com.ethernyx.auth.EtherNyxAuth
+api-version: '1.16'
+author: EtherNyx Team
+description: Dark fantasy authentication, player info, and ban system with DiscordSRV integration.
+softdepend: [DiscordSRV, floodgate]
+load: POSTWORLD
+
+commands:
+  register:
+    description: Register your account
+    usage: /register <password> <confirm>
+  login:
+    description: Login to your account
+    usage: /login <password> [remember:true/false]
+  changepassword:
+    description: Change your account password
+    usage: /changepassword <old> <new>
+  auth:
+    description: EtherNyxAuth main command
+    usage: /auth <subcommand>
+    aliases: [ethernyxauth, eauth]
+
+permissions:
+  ethernyx.auth.admin:
+    description: Full admin access to EtherNyxAuth
+    default: op
+  ethernyx.auth.bypass:
+    description: Bypass authentication requirements
+    default: false

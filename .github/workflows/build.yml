@@ -1,0 +1,45 @@
+name: Build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Cache Maven & BuildTools artifacts
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-m2-
+
+      - name: Build Spigot API via BuildTools (1.16.5)
+        run: |
+          mkdir -p buildtools && cd buildtools
+          curl -O https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
+          java -jar BuildTools.jar --rev 1.16.5 --compile-if-changed
+
+      - name: Build plugin jar
+        run: mvn -B clean package
+
+      - name: Upload plugin jar as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: EtherNyxAuth-jar
+          path: target/EtherNyxAuth-*.jar
+          if-no-files-found: error

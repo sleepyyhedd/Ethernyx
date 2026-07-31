@@ -1,0 +1,229 @@
+# ============================================================
+# ☾ ETHERNYX AUTH — ADVANCED CONFIGURATION ☾
+# ============================================================
+# Dark Fantasy Authentication & Player Info System
+# Version: 1.0.0
+# Author: EtherNyx Team
+# ============================================================
+
+settings:
+  prefix: "&8[&5☾&8] &7"
+  language: "en_US"
+  debug: false
+  check-updates: true
+  update-channel: "stable"
+
+authentication:
+  login-timeout: 60
+  max-attempts: 5
+  attempt-cooldown: 3
+  remember-me-enabled: true
+  remember-me-duration: 30
+  password:
+    min-length: 6
+    max-length: 32
+    require-uppercase: false
+    require-lowercase: false
+    require-number: false
+    require-special: false
+    disallow-common-passwords: true
+    common-passwords-list:
+      - "password"
+      - "123456"
+      - "qwerty"
+      - "admin"
+  hashing-algorithm: "BCRYPT"
+  bcrypt-strength: 12
+
+security:
+  movement:
+    enabled: true
+    walk-speed: 0.0
+    fly-speed: 0.0
+    teleport-back-on-move: true
+
+  effects:
+    blindness:
+      enabled: true
+      duration: 999999
+      show-particles: false
+      show-icon: false
+    slowness:
+      enabled: true
+      duration: 999999
+      show-particles: false
+      show-icon: false
+
+  damage:
+    prevent-all: true
+    prevent-fall: true
+    prevent-drowning: true
+    prevent-lava: true
+    prevent-fire: true
+    prevent-suffocation: true
+    prevent-entity: true
+    prevent-void: true
+
+  health:
+    freeze-health: true
+    health-value: 20.0
+    freeze-food: true
+    food-value: 20
+    saturation-value: 10
+
+  interaction:
+    prevent-interact: true
+    prevent-block-break: true
+    prevent-block-place: true
+    prevent-item-pickup: true
+    prevent-item-drop: true
+    prevent-inventory-open: true
+    prevent-inventory-click: true
+    prevent-ender-pearl: true
+    prevent-bow-shoot: true
+    prevent-potion-throw: true
+
+  chat:
+    prevent-chat: true
+    prevent-command: true
+    whitelist-commands:
+      - "/login"
+      - "/register"
+      - "/auth"
+      - "/changepassword"
+
+  device:
+    ip-check-enabled: true
+    device-check-enabled: true
+    prompt-on-ip-change: true
+    prompt-on-device-change: true
+    max-ip-changes-per-day: 3
+    track-ports: true
+
+  brute-force:
+    enabled: true
+    max-attempts: 5
+    cooldown-seconds: 3
+    kick-on-max: true
+    reset-attempts-on-login: true
+    reset-attempts-after-minutes: 30
+
+  vpn-detection:
+    enabled: false
+    action: "warn"
+    warning-message: "&cVPN/Proxy detected. Please disable to join."
+    api-key: ""
+
+ban:
+  enabled: true
+  message: |
+    &8━━━━━━━━━━━━━━━━━━━━━━━━━━
+    &5☾ &cTHE REALM HAS CAST JUDGMENT
+    &8━━━━━━━━━━━━━━━━━━━━━━━━━━
+    &fPlayer: &7{player}
+    &fDuration: &7{duration}
+    &fReason: &7{reason}
+    &fModerator: &7{moderator}
+    &8━━━━━━━━━━━━━━━━━━━━━━━━━━
+    &7Your soul has been banished from EtherNyx.
+    &8━━━━━━━━━━━━━━━━━━━━━━━━━━
+  temp-message: |
+    &8━━━━━━━━━━━━━━━━━━━━━━━━━━
+    &5☾ &6TEMPORARY BANISHMENT
+    &8━━━━━━━━━━━━━━━━━━━━━━━━━━
+    &fPlayer: &7{player}
+    &fDuration: &7{duration}
+    &fRemaining: &7{remaining}
+    &fReason: &7{reason}
+    &8━━━━━━━━━━━━━━━━━━━━━━━━━━
+  unban-message: |
+    &8━━━━━━━━━━━━━━━━━━━━━━━━━━
+    &5☾ &aRELEASED FROM BANISHMENT
+    &8━━━━━━━━━━━━━━━━━━━━━━━━━━
+    &fPlayer: &7{player}
+    &fModerator: &7{moderator}
+    &8━━━━━━━━━━━━━━━━━━━━━━━━━━
+  duration-formats:
+    s: "seconds"
+    m: "minutes"
+    h: "hours"
+    d: "days"
+    w: "weeks"
+    mo: "months"
+    y: "years"
+    permanent: "permanent"
+  auto-unban-interval: 1
+  history-retention: 90
+
+discord:
+  enabled: true
+  required-version: "1.5.0"
+  channels:
+    mod-logs: "123456789012345678"
+    announcements: "123456789012345678"
+    reports: "123456789012345678"
+  messages:
+    ban: |
+      ☾ **Player Banned** ☾
+      **Player:** {player}
+      **Duration:** {duration}
+      **Reason:** {reason}
+      **Moderator:** {moderator}
+      **Date:** {date}
+    tempban: |
+      ☾ **Player Temporarily Banned** ☾
+      **Player:** {player}
+      **Duration:** {duration}
+      **Reason:** {reason}
+      **Moderator:** {moderator}
+      **Date:** {date}
+    unban: |
+      ☾ **Player Unbanned** ☾
+      **Player:** {player}
+      **Moderator:** {moderator}
+      **Date:** {date}
+    kick: |
+      ☾ **Player Kicked** ☾
+      **Player:** {player}
+      **Reason:** {reason}
+      **Moderator:** {moderator}
+    third-party-ban: |
+      ☾ **Third-Party Ban Detected** ☾
+      **Player:** {player}
+      **Source:** {plugin}
+      **Reason:** {reason}
+      **Date:** {date}
+    warn: |
+      ☾ **Player Warned** ☾
+      **Player:** {player}
+      **Reason:** {reason}
+      **Moderator:** {moderator}
+  webhook:
+    enabled: false
+    url: ""
+    username: "EtherNyx Moderation"
+    avatar-url: ""
+
+book:
+  title: "&5☾ {player} &5☾"
+  author: "&7EtherNyx Archive"
+
+achievements:
+  enabled: true
+
+performance:
+  save-interval: 5
+  async-file-io: true
+  cache-player-data: true
+  cache-size: 100
+  cleanup-interval: 30
+  batch-size: 50
+
+database:
+  type: "YAML"
+  yaml:
+    players-file: "players.yml"
+    bans-file: "bans.yml"
+    backup-on-save: true
+    backup-directory: "backups/"
+    max-backups: 10
